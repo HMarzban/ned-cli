@@ -1,6 +1,6 @@
 {
   "name": "ned-lib-cli",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Ned command line interface",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,6 @@
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
     "fs-extra": "^7.0.0",
-    "git-clone": "^0.1.0",
     "inquirer": "^6.2.0"
   }
 }

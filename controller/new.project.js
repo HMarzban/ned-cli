@@ -6,8 +6,9 @@ const
 
 class NewProject {
 
-    constructor(_dir) {
+    constructor(_dir, _r) {
         this.dir = _dir;
+        this.realClone = _r;
         this.init();
     }
 
@@ -22,11 +23,18 @@ class NewProject {
 
                     //fs.copySync(path.join(__dirname, '../seedFiles'), this.dir);
                     console.info(`${chalk.bold.greenBright("\n[Ned Cli]:")} Clone starte pack:`);
-                    await spawnSync('git', ['clone', 'https://github.com/HosseinMarzban/ned-seed.git', this.dir], {
-                        detached: true,
-                        stdio: 'inherit',
-                        shell: true
-                    });
+                    if(this.realClone){
+                        await spawnSync('git', ['clone', 'https://github.com/HosseinMarzban/ned', this.dir], {
+                            stdio: 'inherit',
+                            shell: true
+                        });
+                    }else{
+                        await spawnSync('git', ['clone', 'https://github.com/HosseinMarzban/ned-seed.git', this.dir], {
+                            stdio: 'inherit',
+                            shell: true
+                        });
+                    }
+                    
                     console.info(`${chalk.bold.greenBright("[Ned Cli]:")} Clone Don.`);
 
                     console.info(`${chalk.bold.greenBright("\n[Ned Cli]:")} Directory and files ready.`);

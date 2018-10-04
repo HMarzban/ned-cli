@@ -8,18 +8,22 @@ const program = require('commander'),
 
 
 program
-  .version('0.6.0');
+  .version('0.6.2', '-v, --version')
+  .description('Gives you Current version of Ned-cli')
 
 
 program
-  .command('new <projectName')
-  .action(async function (_projectName) {
-    await new NewProject(_projectName);
+  .command('new <projectName> ')
+  .option('-r, --realWork', 'Clone Simple but usefull Real Ned Application')
+  .description('Creat new "Ned" project')
+  .action(async function (_projectName,_realWork) {
+    await new NewProject(_projectName, _realWork.realWork);
   });
 
 
 program
   .command('add')
+  .description('Add new "Router", "Component" and "Module" in current Project')
   .action(async function () {
     try {
       new AddNew();
@@ -30,6 +34,7 @@ program
 
 program
   .command('deploy <targetServe>')
+  .description('Deploy your application for these three target: "Nginx", "Apache " and "Node"')
   .action(async function (_targetServer) {
     console.info("[Ned Cli]: not ready.");
   });
@@ -37,6 +42,7 @@ program
 
 program
   .command('serve')
+  .description('Run npm start, to serve your application')
   .action(async function (target) {
     await spawnSync('npm', ["start"], {
       stdio: 'inherit',
