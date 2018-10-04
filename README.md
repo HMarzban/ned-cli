@@ -6,7 +6,7 @@ It gives your application Component and Module features for longer maintainable 
 
 **How to use Ned-cli:**
 
- 1. First of all install through npm in global:  `npm install -g nedcli` 
+ 1. First of all install through npm in global:  `npm i -g ned-lib-cli` 
  2. Then Creat your project with: `ned new NedProjec`
  3. After all run your project with: `ned serve`
  4. For Deploy your project run: `ned deply`
