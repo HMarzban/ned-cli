@@ -1,6 +1,6 @@
 {
   "name": "ned-lib-cli",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "Ned command line interface",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,11 @@
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
     "fs-extra": "^7.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel-minify": "^0.5.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-htmlmin": "^5.0.1",
     "inquirer": "^6.2.0"
-  }
+  },
+  "devDependencies": {}
 }

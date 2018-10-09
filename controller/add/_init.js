@@ -2,11 +2,10 @@ const { AddNewRout } = require('./add.router');
 const { AddNewModule } = require('./add.module');
 const { AddNewComponent } = require('./add.component');
 
-const fs = require('fs-extra'),
-    chalk = require('chalk'),
-    inquirer = require('inquirer'),
-    { spawnSync } = require('child_process');
-    path = require("path");
+const fs = require("fs-extra"),
+    chalk = require("chalk"),
+    path = require("path")
+    inquirer = require("inquirer");
 
 class AddNew {
     constructor() {
@@ -28,7 +27,7 @@ class AddNew {
 
             try {
 
-                if (fs.existsSync("./ned.settings.json") && target) {
+                if (fs.existsSync(path.resolve("./app/src/ned.config.js")) && target) {
 
                     if (target == "route")
                         await new AddNewRout();
@@ -39,6 +38,8 @@ class AddNew {
                     if (target == "module")
                         await new AddNewModule();
 
+                }else{
+                    console.error(`\n${chalk.bold.greenBright("[Ned Cli]")}${chalk.bold.redBright("[Error]:")} Are You sure, you are in right place? we can not find "ned.config.js" file in "./app/src" folder! \n`);
                 }
             } catch (error) {
                 console.error(`\n${chalk.bold.greenBright("[Ned Cli]")}${chalk.bold.redBright("[Error]:")} ${error.message}\n`);

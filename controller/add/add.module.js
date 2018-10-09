@@ -1,12 +1,8 @@
 const fs = require('fs-extra'),
     chalk = require('chalk'),
-    inquirer = require('inquirer'),
-    {
-        spawnSync
-    } = require('child_process');
-path = require("path");
+    inquirer = require('inquirer');
 
-let nedSetting = () => JSON.parse(fs.readFileSync('./ned.settings.json', 'utf8'));
+let nedSetting = () => JSON.parse( fs.readFileSync('./app/ned.config.js', 'utf8') );
 
 class AddNewModule {
     constructor() {
@@ -15,7 +11,7 @@ class AddNewModule {
 
     init() {
 
-        let nedSettings = nedSetting();
+       // let nedSettings = nedSetting();
         var questions = [{
             type: 'list',
             name: 'target',
@@ -27,12 +23,6 @@ class AddNewModule {
             let targetModule = answers.target;
             try {
                 let data = await this.creatModuleFor(targetModule)
-
-
-
-
-                // let dirRout = `./app/src/components/${componentName}`;
-                // let  filesDirection = `./components/${componentName}`;
 
                 if (!fs.existsSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}`)) {
 
@@ -61,9 +51,9 @@ class AddNewModule {
                     fs.writeFileSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}/${data.moduleName}.module.script.js`, script);
                     fs.writeFileSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}/${data.moduleName}.module.style.css`, style);
 
-                    nedSettings.module[data.moduleName] = "";
+                    //nedSettings.module[data.moduleName] = "";
 
-                    fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
+                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
 
                     let OutPutHelp = `
                         ${chalk.bold.greenBright("[Ned Cli]:")} Don. Module "${data.moduleName}" added successfully."

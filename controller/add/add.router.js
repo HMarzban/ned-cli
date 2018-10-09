@@ -1,10 +1,10 @@
 const fs = require('fs-extra'),
     chalk = require('chalk'),
-    inquirer = require('inquirer'),
-    { spawnSync } = require('child_process');
-    path = require("path");
+    path = require("path"),
+    inquirer = require('inquirer');
 
-let nedSetting = () => JSON.parse(fs.readFileSync('./ned.settings.json', 'utf8'));
+let nedSetting = () => fs.readFileSync(path.resolve('./app/ned.config.js'), 'utf8');
+
 class AddNewRout {
     constructor() {
         this.init();
@@ -25,6 +25,8 @@ class AddNewRout {
 
                 let nedSettings = nedSetting()
 
+       
+
                 let dirRout = `./app/src/pages/${routeName}`;
                 let  filesDirection = `./pages/${routeName}`;
 
@@ -35,7 +37,7 @@ class AddNewRout {
                     fs.mkdirSync(dirRout);
 
                     const page = `<h2>${routeName} Route Page</h2>`;
-                    const script = `app.route.controller(function(){ /*console.log(this)*/ })`;
+                    const script = `app.router.controller(function(){ /*console.log(this)*/ })`;
                     const style = `[${routeName}]{ /*color:red;*/ }\n\n[${routeName}] h2{font-size:30px;}`;
 
                     fs.writeFileSync(`${dirRout}/${routeName}.route.page.html`, page);
@@ -44,7 +46,7 @@ class AddNewRout {
 
                     nedSettings.router[routeName] = "";
 
-                    fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
+                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
 
                     let OutPutHelp = `
                         ${chalk.bold.greenBright("[Ned Cli]:")} Don. Router "${routeName}" added successfully."
@@ -53,7 +55,7 @@ class AddNewRout {
                         ${chalk.green("//Put this config in your script/js:")}
 
                         ${chalk.blueBright("app")}${chalk.whiteBright(".")}${chalk.blueBright("router")}${chalk.whiteBright(".")}${chalk.yellowBright("add")}(${chalk.rgb(155,85,62)(`'/${routeName}'`)},{
-                            ${chalk.blueBright("name:")}  ${routeName} Page
+                            ${chalk.blueBright("name:")}  ${chalk.rgb(155,85,62)(`"${routeName} Page"`)},
                             ${chalk.blueBright("html:")}  ${chalk.rgb(155,85,62)(`"${filesDirection}/${routeName}.route.page.html"`)},
                             ${chalk.blueBright("style:")} ${chalk.rgb(155,85,62)(`"${filesDirection}/${routeName}.route.style.css"`)},
                             ${chalk.blueBright("script:")}${chalk.rgb(155,85,62)(`"${filesDirection}/${routeName}.route.script.js"`)},

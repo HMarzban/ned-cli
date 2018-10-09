@@ -8,7 +8,7 @@ const program = require('commander'),
 
 
 program
-  .version('0.6.2', '-v, --version')
+  .version('0.6.4', '-v, --version')
   .description('Gives you Current version of Ned-cli')
 
 
@@ -32,11 +32,14 @@ program
     }
   });
 
+
+const {DeployApp} = require('./controller/deploy/_init');
 program
-  .command('deploy <targetServe>')
+  .command('deploy')
   .description('Deploy your application for these three target: "Nginx", "Apache " and "Node"')
   .action(async function (_targetServer) {
-    console.info("[Ned Cli]: not ready.");
+    //console.info("[Ned Cli]: not ready.");
+    new DeployApp();
   });
 
 

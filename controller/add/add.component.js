@@ -1,10 +1,8 @@
 const fs = require('fs-extra'),
     chalk = require('chalk'),
-    inquirer = require('inquirer'),
-    { spawnSync } = require('child_process');
-    path = require("path");
+    inquirer = require('inquirer');
 
-let nedSetting = () => JSON.parse( fs.readFileSync('./ned.settings.json', 'utf8') );
+//let nedSetting = () => fs.readFileSync('./app/ned.config.js', 'utf8') ;
 
 class AddNewComponent {
     constructor() {
@@ -22,7 +20,7 @@ class AddNewComponent {
 
             inquirer.prompt(questions).then(answers => {
                 let componentName = answers.componentName;
-                let nedSettings = nedSetting()
+                //let nedSettings = nedSetting()
 
 
                 let dirRout = `./app/src/components/${componentName}`;
@@ -41,9 +39,9 @@ class AddNewComponent {
                     fs.writeFileSync(`${dirRout}/${componentName}.component.script.js`, script);
                     fs.writeFileSync(`${dirRout}/${componentName}.component.style.css`, style);
 
-                    nedSettings.component[componentName] = "";
+                    //nedSettings.component[componentName] = "";
 
-                    fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
+                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
 
 
                     let OutPutHelp = `
