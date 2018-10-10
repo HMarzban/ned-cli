@@ -3,8 +3,6 @@ const fs = require('fs-extra'),
     path = require("path"),
     inquirer = require('inquirer');
 
-let nedSetting = () => fs.readFileSync(path.resolve('./app/ned.config.js'), 'utf8');
-
 class AddNewRout {
     constructor() {
         this.init();
@@ -23,14 +21,8 @@ class AddNewRout {
 
                 let routeName = answers.routeName;
 
-                let nedSettings = nedSetting()
-
-       
-
                 let dirRout = `./app/src/pages/${routeName}`;
                 let  filesDirection = `./pages/${routeName}`;
-
-
 
                 if (!fs.existsSync(dirRout)) {
 
@@ -43,10 +35,6 @@ class AddNewRout {
                     fs.writeFileSync(`${dirRout}/${routeName}.route.page.html`, page);
                     fs.writeFileSync(`${dirRout}/${routeName}.route.script.js`, script);
                     fs.writeFileSync(`${dirRout}/${routeName}.route.style.css`, style);
-
-                    nedSettings.router[routeName] = "";
-
-                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
 
                     let OutPutHelp = `
                         ${chalk.bold.greenBright("[Ned Cli]:")} Don. Router "${routeName}" added successfully."

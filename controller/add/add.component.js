@@ -2,8 +2,6 @@ const fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer');
 
-//let nedSetting = () => fs.readFileSync('./app/ned.config.js', 'utf8') ;
-
 class AddNewComponent {
     constructor() {
         this.init();
@@ -20,8 +18,6 @@ class AddNewComponent {
 
             inquirer.prompt(questions).then(answers => {
                 let componentName = answers.componentName;
-                //let nedSettings = nedSetting()
-
 
                 let dirRout = `./app/src/components/${componentName}`;
                 let  filesDirection = `./components/${componentName}`;
@@ -38,11 +34,6 @@ class AddNewComponent {
                     fs.writeFileSync(`${dirRout}/${componentName}.component.page.html`, page);
                     fs.writeFileSync(`${dirRout}/${componentName}.component.script.js`, script);
                     fs.writeFileSync(`${dirRout}/${componentName}.component.style.css`, style);
-
-                    //nedSettings.component[componentName] = "";
-
-                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
-
 
                     let OutPutHelp = `
                         ${chalk.bold.greenBright("[Ned Cli]:")} Don. Component "${componentName}" added successfully."

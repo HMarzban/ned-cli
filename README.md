@@ -24,6 +24,7 @@ Commend| Description
 
  1. `git clone` ned-cli repository.
  2. `npm i`
+ 4. `npm uninstall ned-cli`
  3. `npm link`
  4. Ready for Develop
 
@@ -31,5 +32,5 @@ Commend| Description
 #### Quick Links
 - <a href="https://github.com/HosseinMarzban/ned">ned</a>
 - <a href="https://github.com/HosseinMarzban/ned-cli">ned-cli</a>
+- <a href="https://github.com/HosseinMarzban/tscw">tscw-cli</a>
 - <a href="https://github.com/HosseinMarzban/ned-seed">ned-seed</a>
-

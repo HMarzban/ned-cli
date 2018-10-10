@@ -2,7 +2,6 @@ const fs = require('fs-extra'),
     chalk = require('chalk'),
     inquirer = require('inquirer');
 
-let nedSetting = () => JSON.parse( fs.readFileSync('./app/ned.config.js', 'utf8') );
 
 class AddNewModule {
     constructor() {
@@ -11,7 +10,6 @@ class AddNewModule {
 
     init() {
 
-       // let nedSettings = nedSetting();
         var questions = [{
             type: 'list',
             name: 'target',
@@ -21,11 +19,11 @@ class AddNewModule {
 
         inquirer.prompt(questions).then(async answers => {
             let targetModule = answers.target;
+
             try {
                 let data = await this.creatModuleFor(targetModule)
 
                 if (!fs.existsSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}`)) {
-
 
 
                     if (targetModule == "component")
@@ -50,10 +48,6 @@ class AddNewModule {
                     fs.writeFileSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}/${data.moduleName}.module.page.html`, page);
                     fs.writeFileSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}/${data.moduleName}.module.script.js`, script);
                     fs.writeFileSync(`./app/src/${targetModule}/${data.for}/modules/${data.moduleName}/${data.moduleName}.module.style.css`, style);
-
-                    //nedSettings.module[data.moduleName] = "";
-
-                    //fs.writeFileSync(`./ned.settings.json`, JSON.stringify(nedSettings));
 
                     let OutPutHelp = `
                         ${chalk.bold.greenBright("[Ned Cli]:")} Don. Module "${data.moduleName}" added successfully."
@@ -95,12 +89,18 @@ class AddNewModule {
 
         return new Promise((resolve, reject) => {
 
-            let nedSettings = nedSetting()
+           let targetList;
+
+            if(_target == "router")
+                targetList =  fs.readdirSync("./app/src/pages");
+            else
+                targetList =  fs.readdirSync("./app/src/components");
+    
             var questions = [{
                 type: 'list',
                 name: 'for',
                 message: "For:",
-                choices: Object.keys(nedSettings[_target])
+                choices: targetList
             }, {
                 type: 'input',
                 name: 'moduleName',
