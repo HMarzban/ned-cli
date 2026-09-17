@@ -24,7 +24,7 @@
     "url": "https://github.com/HosseinMarzban/ned-cli"
   },
   "author": "Hossein Marzban",
-  "license": "Apache",
+  "license": "Apache-2.0",
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
