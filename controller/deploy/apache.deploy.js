@@ -3,7 +3,7 @@ const fs = require('fs-extra'),
     path = require("path");
 
 const gulp = require('gulp');
-const htmlmin = require('gulp-htmlmin');
+const htmlmin = require('gulp-html-minifier-terser');
 const cleanCSS = require('gulp-clean-css');
 const minify = require("gulp-babel-minify");
 
